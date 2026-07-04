@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DataForge is a browser-based tool for inspecting, converting, validating, and exporting JSON and XML data."
+    />
+    <title>DataForge - XML & JSON Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow">Cyberpunk Developer Tool</p>
+          <h1 id="pageTitle">DataForge</h1>
+          <p class="hero-text">
+            Paste JSON or XML. Auto-detect, validate, inspect in a collapsible
+            tree, convert formats, and export structured data without leaving
+            your browser.
+          </p>
+        </div>
+        <div class="hero-badge" aria-hidden="true">
+          <span>JSON</span>
+          <strong>XML</strong>
+        </div>
+      </section>
+
+      <section class="card input-card" aria-label="Data input">
+        <div class="input-topline">
+          <div>
+            <p class="section-kicker">Input</p>
+            <h2>Source Data</h2>
+          </div>
+          <div class="format-tabs" role="group" aria-label="Input format">
+            <button class="tab-btn active" type="button" data-format="auto">
+              Auto-detect
+            </button>
+            <button class="tab-btn" type="button" data-format="json">
+              JSON
+            </button>
+            <button class="tab-btn" type="button" data-format="xml">XML</button>
+          </div>
+        </div>
+
+        <label class="sr-only" for="sourceInput">Paste JSON or XML</label>
+        <textarea
+          id="sourceInput"
+          class="source-input"
+          spellcheck="false"
+          placeholder="Paste JSON or XML here..."
+        ></textarea>
+
+        <div class="sample-row" aria-label="Sample data">
+          <button class="ghost-btn" id="sampleJsonBtn" type="button">
+            Load Sample JSON
+          </button>
+          <button class="ghost-btn" id="sampleXmlBtn" type="button">
+            Load Sample XML
+          </button>
+        </div>
+
+        <div class="toolbar">
+          <div class="file-import">
+            <label class="file-btn" for="fileInput">Import File</label>
+            <input
+              id="fileInput"
+              type="file"
+              accept=".json,.xml,.txt,application/json,application/xml,text/xml,text/plain"
+            />
+          </div>
+          <button class="primary-btn" id="parseBtn" type="button">Parse</button>
+          <button class="secondary-btn" id="validateBtn" type="button">
+            Validate
+          </button>
+          <button class="danger-btn" id="clearBtn" type="button">Clear</button>
+        </div>
+
+        <p
+          id="statusMessage"
+          class="status-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </section>
+
+      <section
+        class="stats-bar"
+        id="statsBar"
+        aria-label="Data statistics"
+        hidden
+      ></section>
+
+      <section class="response-layout" aria-label="Output panels">
+        <article class="card response-card">
+          <header class="card-header">
+            <div>
+              <p class="section-kicker">Formatted Output</p>
+              <h2>Pretty Print</h2>
+            </div>
+            <div class="button-cluster">
+              <button
+                class="icon-btn"
+                id="copyPrettyBtn"
+                type="button"
+                disabled
+              >
+                Copy
+              </button>
+              <button
+                class="icon-btn"
+                id="downloadPrettyBtn"
+                type="button"
+                disabled
+              >
+                Download
+              </button>
+            </div>
+          </header>
+          <pre id="prettyPanel" class="json-panel">
+Paste JSON or XML above to begin.</pre
+          >
+        </article>
+
+        <article class="card response-card">
+          <header class="card-header tree-header">
+            <div>
+              <p class="section-kicker">Interactive</p>
+              <h2>Tree Explorer</h2>
+            </div>
+            <div class="search-wrap">
+              <label class="sr-only" for="treeSearch">Search tree</label>
+              <input
+                id="treeSearch"
+                type="search"
+                placeholder="Search tree..."
+                disabled
+              />
+              <span id="matchCount">0 matches</span>
+            </div>
+          </header>
+          <div id="treePanel" class="tree-panel">
+            <p class="empty-state">No data loaded yet.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="card convert-card" aria-label="Format conversion">
+        <header class="card-header">
+          <div>
+            <p class="section-kicker">Transform</p>
+            <h2>Convert Format</h2>
+          </div>
+          <div class="button-cluster">
+            <button
+              class="secondary-btn"
+              id="jsonToXmlBtn"
+              type="button"
+              disabled
+            >
+              JSON to XML
+            </button>
+            <button
+              class="secondary-btn"
+              id="xmlToJsonBtn"
+              type="button"
+              disabled
+            >
+              XML to JSON
+            </button>
+          </div>
+        </header>
+        <label class="sr-only" for="convertedOutput">Converted output</label>
+        <textarea
+          id="convertedOutput"
+          class="converted-output"
+          readonly
+          placeholder="Converted output appears here."
+        ></textarea>
+        <div class="toolbar toolbar-end">
+          <button class="icon-btn" id="copyConvertedBtn" type="button" disabled>
+            Copy Converted
+          </button>
+          <button
+            class="icon-btn"
+            id="downloadConvertedBtn"
+            type="button"
+            disabled
+          >
+            Download Converted
+          </button>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
